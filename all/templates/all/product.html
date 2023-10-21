@@ -1,0 +1,47 @@
+{% extends "all/main.html" %}
+
+{% block content %}
+<h1 class="pt-5 pl-5">products</h1>
+
+    <div class="col" >
+      <a class="pt-5 pl-5" href="{% url 'create_Product' %}">Create products</a>
+    </div>
+<br>
+
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">price_per_unit</th>
+            <th scope="col">basic_unit</th>
+            <th scope="col">description</th>
+            <th scope="col">avatar</th>
+            <th scope="col">date_created</th>
+            <th scope="col">cat</th>
+            <th scope="col">Action</th>
+             
+          </tr>
+        </thead>
+        <tbody>
+        {% for item  in products %}
+          <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.price_per_unit}}</td>
+            <td>{{item.basic_unit}}</td>
+            <td>{{item.description}}</td>
+            <td height=150 width=200> <img src="{{item.avatar.url}}" class="card-img-top" alt="" ></td>
+            <td>{{item.date_created}}</td>
+            <td>{{item.nameCat}}</td>
+            <td>
+                <a href="{% url 'update_Product' item.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a class="text-danger" href="{% url 'delete_Product' item.id %}"><i class="fa-solid fa-trash"></i></a>
+              </td>
+            
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+</div>
+<br>
+{% endblock  %}
